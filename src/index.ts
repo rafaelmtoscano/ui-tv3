@@ -15,5 +15,8 @@ export type { SignProps } from './components/Sign';
 export { MenuItem } from './components/MenuItem';
 export type { MenuItemProps } from './components/MenuItem';
 
+export { Sidebar } from './components/Sidebar';
+export type { SidebarProps, SidebarItem, SidebarSign } from './components/Sidebar';
+
 export { colors } from './styles/colors';
 export { typography } from './styles/typography';
