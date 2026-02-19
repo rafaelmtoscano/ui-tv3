@@ -1,0 +1,18 @@
+:root {
+  /* Light mode */
+  --Primary-Background: #FFF;
+  --ColorBase-Background: rgba(17, 23, 43, 0.04);
+  --color-line-light: rgba(17, 23, 43, 0.12);
+  --Text-Primary: #11172B;
+  --Text-secondary: rgba(17, 23, 43, 0.80);
+  --Text-Desabled: rgba(17, 23, 43, 0.65);
+}
+
+[data-theme='dark'] {
+  --line-dark: rgba(255, 255, 255, 0.08);
+  --primary-background-dark: rgba(255, 255, 255, 0.04);
+  --base-background-dark: #11172B;
+  --text-primary-dark: #FFF;
+  --text-secondary-dark: rgba(255, 255, 255, 0.75);
+  --text-primary-disable: rgba(255, 255, 255, 0.50);
+}
