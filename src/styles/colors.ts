@@ -4,6 +4,7 @@ export const colors = {
     base: 'rgba(17, 23, 43, 0.04)',
     primaryInverse: 'rgba(255, 255, 255, 0.04)',
     baseInverse: '#11172B',
+    brandPrimary: '#1ea7fd',
   },
   line: {
     light: 'rgba(17, 23, 43, 0.12)',
