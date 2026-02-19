@@ -123,8 +123,36 @@ export const Sidebar = memo(
           } else if (currentIndex > 0) {
             itemRefs.current[currentIndex - 1]?.focus();
           }
+        } else if (e.key === 'ArrowRight' && isExpanded) {
+          e.preventDefault();
+          setExpanded(false);
+          // Move focus to main content (first focusable element after sidebar)
+          const mainContent = document.querySelector(
+            'main, [data-main-content], #main-content'
+          ) as HTMLElement;
+          mainContent?.focus();
         }
       };
+
+      // Handle ArrowLeft to enter sidebar
+      useEffect(() => {
+        const handleGlobalKeyDown = (e: KeyboardEvent) => {
+          if (e.key === 'ArrowLeft') {
+            const isFocusInSidebar = containerRef.current?.contains(document.activeElement);
+            if (!isFocusInSidebar) {
+              e.preventDefault();
+              if (sign) {
+                signRef.current?.focus();
+              } else {
+                itemRefs.current[0]?.focus();
+              }
+            }
+          }
+        };
+
+        window.addEventListener('keydown', handleGlobalKeyDown);
+        return () => window.removeEventListener('keydown', handleGlobalKeyDown);
+      }, [sign, items.length]);
 
       // Styles
       const outerWrapperStyle: React.CSSProperties = {

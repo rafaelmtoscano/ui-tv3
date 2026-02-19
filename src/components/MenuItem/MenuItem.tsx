@@ -103,7 +103,7 @@ export const MenuItem = memo(
         border: 'none',
         outline: 'none',
         cursor: isDisabled ? 'not-allowed' : 'pointer',
-        transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+        transition: 'background-color 0.25s cubic-bezier(0.4, 0, 0.2, 1), color 0.2s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.2s ease',
         overflow: 'hidden',
         opacity: isDisabled ? 0.4 : 1,
         textAlign: 'left',
@@ -128,7 +128,8 @@ export const MenuItem = memo(
         borderRadius: '100px',
         flexShrink: 0,
         color: contentColor,
-        transition: 'color 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+        transition: 'transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1), color 0.2s ease',
+        transform: isFocused ? 'scale(1.1)' : 'scale(1)',
       };
 
       const labelStyle: React.CSSProperties = {
