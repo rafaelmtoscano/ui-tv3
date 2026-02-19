@@ -1,5 +1,6 @@
 import React, { forwardRef, memo } from 'react';
-import { typography, TypographyVariant } from '../../styles/typography';
+import { typography } from '../../styles/typography';
+import type { TypographyVariant } from '../../styles/typography';
 
 type Size = 'large' | 'medium' | 'small';
 
