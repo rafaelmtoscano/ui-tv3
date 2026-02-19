@@ -21,6 +21,9 @@ export type { SidebarProps, SidebarItem, SidebarSign } from './components/Sideba
 export { ContentCard } from './components/ContentCard';
 export type { ContentCardProps } from './components/ContentCard';
 
+export { ContentRail } from './components/ContentRail';
+export type { ContentRailProps, ContentRailItem } from './components/ContentRail';
+
 export { colors } from './styles/colors';
 export { typography } from './styles/typography';
 
