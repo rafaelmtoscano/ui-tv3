@@ -16,7 +16,7 @@
     "build:lib": "vite build --config vite.lib.config.ts",
     "lint": "eslint .",
     "preview": "vite preview",
-    "storybook": "storybook dev -p 6006 --host 0.0.0.0 --initial-path=/?path=/story/design-system-introduction--welcome",
+    "storybook": "storybook dev -p 6006 --host 0.0.0.0 --initial-path=/story/design-system-introduction--welcome",
     "build-storybook": "storybook build"
   },
   "dependencies": {
