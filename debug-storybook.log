@@ -1,0 +1,20 @@
+[08:12:23.195] [INFO] storybook v10.2.8
+[08:12:24.035] [DEBUG] Getting package.json info for /root/app/code/package.json...
+[08:12:25.192] [INFO] Storybook collects completely anonymous usage telemetry. We use it to shape Storybook's roadmap and prioritize features. You can learn more, including how to opt out, at https://storybook.js.org/telemetry
+[08:12:25.646] [DEBUG] Serving static files from node_modules/@chromatic-com/storybook/assets at /addon-visual-tests-assets
+[08:12:25.646] [INFO] Starting...
+[08:12:25.665] [WARN] No story files found for the specified pattern: src/**/*.mdx
+[08:12:26.046] [ERROR] [38;2;241;97;97mError: Build failed with 1 error:
+.storybook/manager.ts:1:23: ERROR: Could not resolve "@storybook/manager-api"[39m
+    at failureErrorWithLog (./node_modules/esbuild/lib/main.js:1467:15)
+    at ./node_modules/esbuild/lib/main.js:926:25
+    at runOnEndCallbacks (./node_modules/esbuild/lib/main.js:1307:45)
+    at buildResponseToResult (./node_modules/esbuild/lib/main.js:924:7)
+    at ./node_modules/esbuild/lib/main.js:951:16
+    at responseCallbacks.<computed> (./node_modules/esbuild/lib/main.js:603:9)
+    at handleIncomingPacket (./node_modules/esbuild/lib/main.js:658:12)
+    at Socket.readFromStdout (./node_modules/esbuild/lib/main.js:581:7)
+    at Socket.emit (node:events:508:20)
+    at addChunk (node:internal/streams/readable:564:12)
+[08:12:26.050] [WARN] Broken build, fix the error above.
+You may need to refresh the browser.
