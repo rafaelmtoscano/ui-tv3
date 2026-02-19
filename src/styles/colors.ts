@@ -1,21 +1,23 @@
 export const colors = {
-  light: {
-    primaryBackground: '#FFF',
-    colorBaseBackground: 'rgba(17, 23, 43, 0.04)',
-    lineLight: 'rgba(17, 23, 43, 0.12)',
-    textPrimary: '#11172B',
-    textSecondary: 'rgba(17, 23, 43, 0.80)',
-    textDisabled: 'rgba(17, 23, 43, 0.65)',
+  background: {
+    primary: '#FFF',
+    base: 'rgba(17, 23, 43, 0.04)',
+    primaryInverse: 'rgba(255, 255, 255, 0.04)',
+    baseInverse: '#11172B',
   },
-  dark: {
-    lineDark: 'rgba(255, 255, 255, 0.08)',
-    primaryBackground: 'rgba(255, 255, 255, 0.04)',
-    baseBackground: '#11172B',
-    textPrimary: '#FFF',
-    textSecondary: 'rgba(255, 255, 255, 0.75)',
-    textDisabled: 'rgba(255, 255, 255, 0.50)',
+  line: {
+    light: 'rgba(17, 23, 43, 0.12)',
+    dark: 'rgba(255, 255, 255, 0.08)',
+  },
+  text: {
+    primary: '#11172B',
+    secondary: 'rgba(17, 23, 43, 0.80)',
+    disabled: 'rgba(17, 23, 43, 0.65)',
+    primaryInverse: '#FFF',
+    secondaryInverse: 'rgba(255, 255, 255, 0.75)',
+    disabledInverse: 'rgba(255, 255, 255, 0.50)',
   },
 } as const;
 
-export type ColorTheme = keyof typeof colors;
-export type ColorToken<T extends ColorTheme> = keyof typeof colors[T];
+export type ColorCategory = keyof typeof colors;
+export type ColorToken<C extends ColorCategory> = keyof (typeof colors)[C];
