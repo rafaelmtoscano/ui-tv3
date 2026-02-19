@@ -1,5 +1,6 @@
 import React, { forwardRef, memo, useMemo } from 'react';
 import type { ButtonHTMLAttributes } from 'react';
+import { colors } from '../../styles/colors';
 
 export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: 'primary' | 'secondary';
@@ -34,8 +35,12 @@ export const Button = memo(
       };
 
       const variantStyles: Record<string, React.CSSProperties> = {
-        primary: { color: '#fff', backgroundColor: '#1ea7fd' },
-        secondary: { color: '#333', backgroundColor: 'transparent', border: '1px solid #333' },
+        primary: { color: colors.text.primaryInverse, backgroundColor: colors.background.brandPrimary },
+        secondary: {
+          color: colors.text.primary,
+          backgroundColor: 'transparent',
+          border: `1px solid ${colors.text.primary}`,
+        },
       };
 
       const combinedStyle = useMemo(

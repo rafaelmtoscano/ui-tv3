@@ -1,6 +1,7 @@
 import React, { forwardRef, memo } from 'react';
 import { typography } from '../../styles/typography';
 import type { TypographyVariant } from '../../styles/typography';
+import { colors } from '../../styles/colors';
 
 type Size = 'large' | 'medium' | 'small';
 
@@ -20,7 +21,7 @@ export const Text = memo(
       return (
         <Tag
           ref={ref as any}
-          style={{ ...typographyStyle, ...style }}
+          style={{ color: colors.text.primary, ...typographyStyle, ...style }}
           className={className}
           {...props}
         >
