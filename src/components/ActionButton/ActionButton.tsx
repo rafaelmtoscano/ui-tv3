@@ -96,6 +96,7 @@ export const ActionButton = memo(
         color: 'inherit',
         margin: 0,
         whiteSpace: 'nowrap',
+        paddingRight: variant === 'icon-text' ? '1.5rem' : '0',
       };
 
       const iconContainerStyle: React.CSSProperties = {
