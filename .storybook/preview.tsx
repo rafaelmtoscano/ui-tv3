@@ -13,11 +13,11 @@ const preview: Preview = {
     },
   },
   decorators: [
-    (Story) => (
-      <div style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}>
-        <Story />
-      </div>
-    ),
+    (Story) => {
+      document.body.style.fontFamily = "'Plus Jakarta Sans', Inter, system-ui, -apple-system, sans-serif";
+      document.body.style.webkitFontSmoothing = 'antialiased';
+      return <Story />;
+    },
   ],
 };
 
