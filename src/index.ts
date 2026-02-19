@@ -12,5 +12,8 @@ export type { ActionButtonProps } from './components/ActionButton';
 export { Sign } from './components/Sign';
 export type { SignProps } from './components/Sign';
 
+export { MenuItem } from './components/MenuItem';
+export type { MenuItemProps } from './components/MenuItem';
+
 export { colors } from './styles/colors';
 export { typography } from './styles/typography';
