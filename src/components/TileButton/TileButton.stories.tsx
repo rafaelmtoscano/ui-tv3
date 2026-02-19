@@ -19,11 +19,14 @@ const meta: Meta<typeof TileButton> = {
     onBlur: { action: 'blurred' },
   },
   parameters: {
-    layout: 'centered',
     backgrounds: {
       default: 'dark',
-      values: [{ name: 'dark', value: '#11172B' }],
+      values: [
+        { name: 'dark', value: '#11172B' },
+        { name: 'light', value: '#FFFFFF' },
+      ],
     },
+    layout: 'centered',
   },
 };
 
