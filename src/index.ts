@@ -9,5 +9,8 @@ export { Text } from './components/Text';
 export { ActionButton } from './components/ActionButton';
 export type { ActionButtonProps } from './components/ActionButton';
 
+export { Sign } from './components/Sign';
+export type { SignProps } from './components/Sign';
+
 export { colors } from './styles/colors';
 export { typography } from './styles/typography';
