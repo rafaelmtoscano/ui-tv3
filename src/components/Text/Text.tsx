@@ -1,29 +1,33 @@
-import React from 'react';
-import { typography } from '../../styles/typography';
+import React, { forwardRef, memo } from 'react';
+import { typography, TypographyVariant } from '../../styles/typography';
 
-type Variant = 'display' | 'headline' | 'body' | 'label';
 type Size = 'large' | 'medium' | 'small';
 
-interface TextProps {
-  variant?: Variant;
+export interface TextProps extends React.HTMLAttributes<HTMLElement> {
+  variant?: TypographyVariant;
   size?: Size;
   children: React.ReactNode;
   as?: keyof JSX.IntrinsicElements;
-  className?: string;
 }
 
-export const Text = ({
-  variant = 'body',
-  size = 'medium',
-  as: Tag = 'p',
-  children,
-  className,
-}: TextProps) => {
-  const style = (typography[variant] as any)?.[size];
+export const Text = memo(
+  forwardRef<HTMLElement, TextProps>(
+    ({ variant = 'body', size = 'medium', as: Tag = 'p', children, className, style, ...props }, ref) => {
+      const variantTypography = typography[variant] as Record<string, React.CSSProperties>;
+      const typographyStyle = variantTypography[size] || variantTypography['medium'] || {};
 
-  return (
-    <Tag style={style} className={className}>
-      {children}
-    </Tag>
-  );
-};
+      return (
+        <Tag
+          ref={ref as any}
+          style={{ ...typographyStyle, ...style }}
+          className={className}
+          {...props}
+        >
+          {children}
+        </Tag>
+      );
+    }
+  )
+);
+
+Text.displayName = 'Text';
