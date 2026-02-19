@@ -31,14 +31,6 @@ const meta: Meta<typeof Text> = {
 export default meta;
 type Story = StoryObj<typeof Text>;
 
-export const Default: Story = {
-  args: {
-    children: 'The quick brown fox jumps over the lazy dog',
-    variant: 'body',
-    size: 'medium',
-  },
-};
-
 export const Display: Story = {
   args: {
     children: 'Display Text',
@@ -55,20 +47,19 @@ export const Headline: Story = {
   },
 };
 
+export const Body: Story = {
+  args: {
+    children: 'Body Text Content',
+    variant: 'body',
+    size: 'medium',
+  },
+};
+
 export const Label: Story = {
   args: {
     children: 'LABEL TEXT',
     variant: 'label',
     size: 'small',
-  },
-};
-
-export const CustomElement: Story = {
-  args: {
-    children: 'Rendering as h1',
-    variant: 'headline',
-    size: 'large',
-    as: 'h1',
   },
 };
 
