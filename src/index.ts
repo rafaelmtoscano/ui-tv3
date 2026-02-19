@@ -20,3 +20,5 @@ export type { SidebarProps, SidebarItem, SidebarSign } from './components/Sideba
 
 export { colors } from './styles/colors';
 export { typography } from './styles/typography';
+
+export * from './icons';
