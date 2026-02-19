@@ -8,7 +8,7 @@
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "storybook": "storybook dev -p 6006 --host 0.0.0.0 --initial-path=/?path=/docs/design-system-introduction--docs",
+    "storybook": "storybook dev -p 6006 --host 0.0.0.0 --initial-path=/?path=/story/design-system-introduction--welcome",
     "build-storybook": "storybook build"
   },
   "dependencies": {
