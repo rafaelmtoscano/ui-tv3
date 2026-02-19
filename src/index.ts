@@ -18,6 +18,9 @@ export type { MenuItemProps } from './components/MenuItem';
 export { Sidebar } from './components/Sidebar';
 export type { SidebarProps, SidebarItem, SidebarSign } from './components/Sidebar';
 
+export { ContentCard } from './components/ContentCard';
+export type { ContentCardProps } from './components/ContentCard';
+
 export { colors } from './styles/colors';
 export { typography } from './styles/typography';
 
