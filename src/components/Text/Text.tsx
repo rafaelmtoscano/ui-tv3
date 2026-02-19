@@ -9,7 +9,7 @@ export interface TextProps extends React.HTMLAttributes<HTMLElement> {
   variant?: TypographyVariant;
   size?: Size;
   children: React.ReactNode;
-  as?: keyof JSX.IntrinsicElements;
+  as?: React.ElementType;
 }
 
 export const Text = memo(
@@ -18,15 +18,17 @@ export const Text = memo(
       const variantTypography = typography[variant] as Record<string, React.CSSProperties>;
       const typographyStyle = variantTypography[size] || variantTypography['medium'] || {};
 
+      const Component = Tag as any;
+
       return (
-        <Tag
+        <Component
           ref={ref as any}
           style={{ color: colors.text.primary, ...typographyStyle, ...style }}
           className={className}
           {...props}
         >
           {children}
-        </Tag>
+        </Component>
       );
     }
   )

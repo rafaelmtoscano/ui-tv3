@@ -1,11 +1,19 @@
 {
-  "name": "front-tv",
-  "private": true,
-  "version": "0.0.0",
+  "name": "tv-catalog-ui",
+  "private": false,
+  "version": "1.0.0",
+  "description": "TV 10-foot UI component library",
   "type": "module",
+  "main": "dist/tv-catalog-ui.umd.js",
+  "module": "dist/tv-catalog-ui.es.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
+    "build:lib": "vite build --config vite.lib.config.ts",
     "lint": "eslint .",
     "preview": "vite preview",
     "storybook": "storybook dev -p 6006 --host 0.0.0.0 --initial-path=/?path=/story/design-system-introduction--welcome",
@@ -40,6 +48,7 @@
     "typescript": "~5.9.3",
     "typescript-eslint": "^8.48.0",
     "vite": "^7.3.1",
+    "vite-plugin-dts": "3.9.1",
     "vitest": "^4.0.18"
   }
 }
