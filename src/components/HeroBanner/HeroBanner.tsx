@@ -26,7 +26,7 @@ export const HeroBanner = memo(
   forwardRef<HTMLDivElement, HeroBannerProps>(
     ({ slides, autoPlayInterval = 15000, onSlideChange, className }, ref) => {
       const [activeIndex, setActiveIndex] = useState(0);
-      const [isPaused, setIsPaused] = useState(false);
+      const [isPaused, setIsPaused] = useState(true);
       const containerRef = useRef<HTMLDivElement>(null);
       const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
@@ -261,42 +261,45 @@ export const HeroBanner = memo(
 
           {/* Content layer */}
           <div style={contentLayerStyle}>
-            {/* Slide content — logo, live tag, title, description fade together */}
-            {slides.map((s, i) => (
-              <div
-                key={s.id}
-                style={{
-                  ...mainContentStyle,
-                  position: 'absolute',
-                  top: 0,
-                  left: '64px',
-                  bottom: '120px',
-                  width: '580px',
-                  opacity: activeIndex === i ? 1 : 0,
-                  transform: activeIndex === i ? 'translateY(0)' : 'translateY(16px)',
-                  transition:
-                    'opacity 0.4s ease-in-out 0.1s, transform 0.4s cubic-bezier(0.4, 0, 0.2, 1) 0.1s',
-                  pointerEvents: activeIndex === i ? 'auto' : 'none',
-                  justifyContent: 'flex-end',
-                }}
-              >
-                {/* Top row — logo + live tag */}
-                {(s.logo || s.isLive) && (
-                  <div style={topRowStyle}>
-                    {s.logo && (
-                      <img
-                        src={s.logo}
-                        alt="Channel logo"
-                        style={{ height: '48px', objectFit: 'contain' }}
-                      />
-                    )}
-                    {s.isLive && <span style={liveTagStyle}>Ao vivo</span>}
-                  </div>
-                )}
-                <h1 style={titleStyle}>{s.title}</h1>
-                {s.description && <p style={descriptionStyle}>{s.description}</p>}
-              </div>
-            ))}
+            {slides.map((s, i) => {
+              const isActive = activeIndex === i;
+              return (
+                <div
+                  key={s.id}
+                  style={{
+                    ...mainContentStyle,
+                    position: 'absolute',
+                    top: 0,
+                    left: '64px',
+                    bottom: '120px',
+                    width: '580px',
+                    opacity: isActive ? 1 : 0,
+                    transform: isActive ? 'translateY(0)' : 'translateY(16px)',
+                    transition: isActive
+                      ? 'opacity 0.4s ease-in-out 0.3s, transform 0.4s cubic-bezier(0.4, 0, 0.2, 1) 0.3s'
+                      : 'opacity 0.25s ease-in-out 0s, transform 0.25s cubic-bezier(0.4, 0, 0.2, 1) 0s',
+                    pointerEvents: isActive ? 'auto' : 'none',
+                    justifyContent: 'flex-end',
+                  }}
+                >
+                  {/* Top row — logo + live tag */}
+                  {(s.logo || s.isLive) && (
+                    <div style={topRowStyle}>
+                      {s.logo && (
+                        <img
+                          src={s.logo}
+                          alt="Channel logo"
+                          style={{ height: '48px', objectFit: 'contain' }}
+                        />
+                      )}
+                      {s.isLive && <span style={liveTagStyle}>Ao vivo</span>}
+                    </div>
+                  )}
+                  <h1 style={titleStyle}>{s.title}</h1>
+                  {s.description && <p style={descriptionStyle}>{s.description}</p>}
+                </div>
+              );
+            })}
 
             {/* Bottom row — button + pagination */}
             <div style={bottomRowStyle}>
