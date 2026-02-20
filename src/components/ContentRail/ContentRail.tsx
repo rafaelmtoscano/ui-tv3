@@ -50,6 +50,7 @@ export const ContentRail = memo(
       ref
     ) => {
       const [internalFocusedIndex, setInternalFocusedIndex] = useState(-1);
+      const [hasAnyFocus, setHasAnyFocus] = useState(false);
       const isControlled = controlledFocusedIndex !== undefined;
       const focusedIndex = isControlled ? controlledFocusedIndex : internalFocusedIndex;
 
@@ -73,6 +74,7 @@ export const ContentRail = memo(
       }, [focusedIndex]);
 
       const handleCardFocus = (index: number) => {
+        setHasAnyFocus(true);
         if (!isControlled) {
           setInternalFocusedIndex(index);
         }
@@ -125,10 +127,12 @@ export const ContentRail = memo(
       const railWrapperStyle: React.CSSProperties = {
         position: 'relative',
         width: '100%',
+        height: hasAnyFocus ? '440px' : '376px',
         paddingBlock: '64px',
         marginBlock: '-64px',
         overflowX: 'visible',
         overflowY: 'visible',
+        transition: 'height 0.35s cubic-bezier(0.4, 0, 0.2, 1)',
       };
 
       const scrollContainerStyle: React.CSSProperties = {
@@ -171,7 +175,14 @@ export const ContentRail = memo(
                     {...item}
                     tabIndex={focusedIndex === index || (focusedIndex === -1 && index === 0) ? 0 : -1}
                     onFocus={() => handleCardFocus(index)}
-                    onBlur={() => !isControlled && setInternalFocusedIndex(-1)}
+                    onBlur={() => {
+                      if (!isControlled) setInternalFocusedIndex(-1);
+                      setTimeout(() => {
+                        if (!cardRefs.current.some(ref => ref === document.activeElement)) {
+                          setHasAnyFocus(false);
+                        }
+                      }, 50);
+                    }}
                     onClick={() => onItemClick?.(item.id)}
                     isFocused={focusedIndex === index}
                   />

@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import React, { useState } from 'react';
 import { ContentRail } from './ContentRail';
+import { ContentRailGroup } from '../ContentRailGroup';
 
 const meta: Meta<typeof ContentRail> = {
   title: 'Components/ContentRail',
@@ -108,7 +109,7 @@ export const MultipleRails: Story = {
     };
 
     return (
-      <div style={{ display: 'flex', flexDirection: 'column', gap: '64px', padding: '64px 0' }}>
+      <ContentRailGroup style={{ padding: '64px 0' }}>
         <ContentRail
           title="TV ao vivo"
           variant="image"
@@ -134,7 +135,7 @@ export const MultipleRails: Story = {
           onFocusedIndexChange={(idx) => handleFocusedIndexChange(2, idx)}
           onNavigateUp={() => setActiveRail(1)}
         />
-      </div>
+      </ContentRailGroup>
     );
   },
 };

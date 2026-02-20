@@ -24,6 +24,9 @@ export type { ContentCardProps } from './components/ContentCard';
 export { ContentRail } from './components/ContentRail';
 export type { ContentRailProps, ContentRailItem } from './components/ContentRail';
 
+export { ContentRailGroup } from './components/ContentRailGroup';
+export type { ContentRailGroupProps } from './components/ContentRailGroup';
+
 export { colors } from './styles/colors';
 export { typography } from './styles/typography';
 
