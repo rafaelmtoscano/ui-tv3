@@ -1,7 +1,8 @@
 import React, { useState, forwardRef, memo, useRef, useEffect } from 'react';
 import { colors } from '../../styles/colors';
 import { typography } from '../../styles/typography';
-import { ContentCard, ContentCardProps } from '../ContentCard';
+import { ContentCard } from '../ContentCard';
+import type { ContentCardProps } from '../ContentCard';
 
 export interface ContentRailItem extends Omit<ContentCardProps, 'onClick' | 'onFocus' | 'onBlur' | 'isFocused' | 'tabIndex'> {
   id: string;
