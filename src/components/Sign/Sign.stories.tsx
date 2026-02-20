@@ -3,7 +3,7 @@ import React from 'react';
 import { Sign } from './Sign';
 
 const meta: Meta<typeof Sign> = {
-  title: 'Base/Sign',
+  title: 'Components/Sign',
   component: Sign,
   tags: ['autodocs'],
   parameters: {

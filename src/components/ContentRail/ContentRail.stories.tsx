@@ -4,7 +4,7 @@ import { ContentRail } from './ContentRail';
 import { ContentRailGroup } from '../ContentRailGroup';
 
 const meta: Meta<typeof ContentRail> = {
-  title: 'Components/ContentRail',
+  title: 'Layout/ContentRail',
   component: ContentRail,
   tags: ['autodocs'],
   parameters: {

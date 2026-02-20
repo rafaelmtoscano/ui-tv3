@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import * as Icons from './index';
 
 const meta: Meta = {
-  title: 'Design System/Icons',
+  title: 'Foundation/Icons',
   tags: ['autodocs'],
   parameters: {
     backgrounds: {
