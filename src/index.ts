@@ -27,6 +27,9 @@ export type { ContentRailProps, ContentRailItem } from './components/ContentRail
 export { ContentRailGroup } from './components/ContentRailGroup';
 export type { ContentRailGroupProps } from './components/ContentRailGroup';
 
+export { HeroBanner } from './components/HeroBanner';
+export type { HeroBannerProps, HeroBannerSlide } from './components/HeroBanner';
+
 export { colors } from './styles/colors';
 export { typography } from './styles/typography';
 
