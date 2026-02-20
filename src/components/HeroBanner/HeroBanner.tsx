@@ -107,8 +107,8 @@ export const HeroBanner = memo(
         zIndex: 2,
         display: 'flex',
         flexDirection: 'column',
-        justifyContent: 'space-between',
-        padding: '48px 64px',
+        justifyContent: 'flex-end',
+        padding: '0 64px 48px',
         boxSizing: 'border-box',
       };
 
@@ -129,10 +129,13 @@ export const HeroBanner = memo(
       };
 
       const mainContentStyle: React.CSSProperties = {
+        position: 'absolute',
+        bottom: '120px',
+        left: '64px',
+        maxWidth: '580px',
         display: 'flex',
         flexDirection: 'column',
         gap: '16px',
-        maxWidth: '580px',
       };
 
       const titleStyle: React.CSSProperties = {
@@ -258,30 +261,38 @@ export const HeroBanner = memo(
 
           {/* Content layer */}
           <div style={contentLayerStyle}>
-            {/* Top row — logo + live tag */}
-            <div style={topRowStyle}>
-              {slide?.logo && (
-                <img
-                  src={slide.logo}
-                  alt="Channel logo"
-                  style={{ height: '48px', objectFit: 'contain' }}
-                />
-              )}
-              {slide?.isLive && <span style={liveTagStyle}>Ao vivo</span>}
-            </div>
-
-            {/* Main content — transitions with slides */}
+            {/* Slide content — logo, live tag, title, description fade together */}
             {slides.map((s, i) => (
               <div
                 key={s.id}
                 style={{
                   ...mainContentStyle,
-                  position: i === 0 ? 'relative' : 'absolute',
+                  position: 'absolute',
+                  top: 0,
+                  left: '64px',
+                  bottom: '120px',
+                  width: '580px',
                   opacity: activeIndex === i ? 1 : 0,
-                  transition: 'opacity 0.4s ease-in-out 0.1s',
+                  transform: activeIndex === i ? 'translateY(0)' : 'translateY(16px)',
+                  transition:
+                    'opacity 0.4s ease-in-out 0.1s, transform 0.4s cubic-bezier(0.4, 0, 0.2, 1) 0.1s',
                   pointerEvents: activeIndex === i ? 'auto' : 'none',
+                  justifyContent: 'flex-end',
                 }}
               >
+                {/* Top row — logo + live tag */}
+                {(s.logo || s.isLive) && (
+                  <div style={topRowStyle}>
+                    {s.logo && (
+                      <img
+                        src={s.logo}
+                        alt="Channel logo"
+                        style={{ height: '48px', objectFit: 'contain' }}
+                      />
+                    )}
+                    {s.isLive && <span style={liveTagStyle}>Ao vivo</span>}
+                  </div>
+                )}
                 <h1 style={titleStyle}>{s.title}</h1>
                 {s.description && <p style={descriptionStyle}>{s.description}</p>}
               </div>
@@ -289,13 +300,14 @@ export const HeroBanner = memo(
 
             {/* Bottom row — button + pagination */}
             <div style={bottomRowStyle}>
-              {slide?.buttonLabel !== undefined || slides.some((s) => s.buttonLabel) ? (
+              {(slide?.buttonLabel !== undefined || slides.some((s) => s.buttonLabel)) && (
                 <ActionButton
                   variant="text"
                   label={slide?.buttonLabel || 'Assistir'}
                   onClick={slide?.onButtonClick}
+                  state={isPaused ? 'focus' : 'idle'}
                 />
-              ) : null}
+              )}
 
               {slides.length > 1 && (
                 <div style={paginationStyle} role="tablist" aria-label="Slides">

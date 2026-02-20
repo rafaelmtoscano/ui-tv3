@@ -3,7 +3,7 @@ import { HeroBanner } from './HeroBanner';
 import type { HeroBannerSlide } from './HeroBanner';
 
 const meta: Meta<typeof HeroBanner> = {
-  title: 'Layout/HeroBanner',
+  title: '3. Layout/HeroBanner',
   component: HeroBanner,
   tags: ['autodocs'],
   parameters: {
@@ -30,15 +30,14 @@ const meta: Meta<typeof HeroBanner> = {
 export default meta;
 type Story = StoryObj<typeof HeroBanner>;
 
-const CANAL_GOV_LOGO =
-  'https://upload.wikimedia.org/wikipedia/commons/thumb/5/50/Canal_Gov.svg/320px-Canal_Gov.svg.png';
+const PLACEHOLDER_LOGO = 'https://via.placeholder.com/120x48/ffffff/333333?text=Logo';
 
 const sampleSlides: HeroBannerSlide[] = [
   {
     id: '1',
     mediaType: 'image',
     mediaSrc: 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=1920',
-    logo: CANAL_GOV_LOGO,
+    logo: PLACEHOLDER_LOGO,
     isLive: true,
     title: 'Brasil em dia',
     description:
