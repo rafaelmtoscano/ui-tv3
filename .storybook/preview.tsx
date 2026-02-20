@@ -1,3 +1,4 @@
+import React from 'react';
 import type { Preview } from '@storybook/react';
 
 import '../src/index.css';
@@ -11,6 +12,13 @@ const preview: Preview = {
       },
     },
   },
+  decorators: [
+    (Story) => {
+      document.body.style.fontFamily = "'Plus Jakarta Sans', Inter, system-ui, -apple-system, sans-serif";
+      document.body.style.webkitFontSmoothing = 'antialiased';
+      return <Story />;
+    },
+  ],
 };
 
 export default preview;
