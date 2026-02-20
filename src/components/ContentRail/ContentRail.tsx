@@ -118,13 +118,15 @@ export const ContentRail = memo(
         flexDirection: 'column',
         gap: '48px',
         marginBottom: '64px',
+        overflowX: 'visible',
+        overflowY: 'visible',
       };
 
       const railWrapperStyle: React.CSSProperties = {
         position: 'relative',
         width: '100%',
-        paddingBlock: '40px',
-        marginBlock: '-40px',
+        paddingBlock: '64px',
+        marginBlock: '-64px',
         overflowX: 'visible',
         overflowY: 'visible',
       };
@@ -134,7 +136,8 @@ export const ContentRail = memo(
         gap: '48px',
         overflowX: 'auto',
         overflowY: 'visible',
-        padding: '0 64px', // Rail gutter
+        padding: '0 64px',
+        paddingBlock: '0',
         msOverflowStyle: 'none',
         scrollbarWidth: 'none',
         scrollBehavior: 'smooth',
