@@ -50,7 +50,6 @@ export const ContentRail = memo(
       ref
     ) => {
       const [internalFocusedIndex, setInternalFocusedIndex] = useState(-1);
-      const [hasAnyFocus, setHasAnyFocus] = useState(false);
       const isControlled = controlledFocusedIndex !== undefined;
       const focusedIndex = isControlled ? controlledFocusedIndex : internalFocusedIndex;
 
@@ -74,7 +73,6 @@ export const ContentRail = memo(
       }, [focusedIndex]);
 
       const handleCardFocus = (index: number) => {
-        setHasAnyFocus(true);
         if (!isControlled) {
           setInternalFocusedIndex(index);
         }
@@ -124,30 +122,32 @@ export const ContentRail = memo(
         overflowY: 'visible',
       };
 
-      const railWrapperStyle: React.CSSProperties = {
+      // Outer div: reserves vertical breathing room so focused cards
+      // (which grow upward/downward) are never clipped. The negative
+      // marginBlock compensates so sibling elements don't shift.
+      const outerSpaceStyle: React.CSSProperties = {
         position: 'relative',
         width: '100%',
-        height: hasAnyFocus ? '440px' : '376px',
         paddingBlock: '64px',
         marginBlock: '-64px',
-        overflowX: 'visible',
-        overflowY: 'visible',
-        transition: 'height 0.35s cubic-bezier(0.4, 0, 0.2, 1)',
       };
 
+      // Inner div: horizontal scroll only.
+      // NOTE: A single element cannot have overflow-x: auto AND
+      // overflow-y: visible at the same time (browser collapses
+      // overflow-y to auto/hidden). The two-div split solves this.
       const scrollContainerStyle: React.CSSProperties = {
         display: 'flex',
         gap: '48px',
         overflowX: 'auto',
         overflowY: 'visible',
         padding: '0 64px',
-        paddingBlock: '0',
-        msOverflowStyle: 'none',
         scrollbarWidth: 'none',
+        msOverflowStyle: 'none',
         scrollBehavior: 'smooth',
-        width: 'max-content',
-        minWidth: '100%',
         alignItems: 'center',
+        width: '100%',
+        boxSizing: 'border-box',
       };
 
       return (
@@ -165,7 +165,7 @@ export const ContentRail = memo(
             </h2>
           )}
 
-          <div style={railWrapperStyle}>
+          <div style={outerSpaceStyle}>
             <div ref={scrollContainerRef} className="hide-scrollbar" style={scrollContainerStyle}>
               {items.map((item, index) => (
                 <div key={item.id} style={{ flexShrink: 0 }}>
@@ -175,14 +175,7 @@ export const ContentRail = memo(
                     {...item}
                     tabIndex={focusedIndex === index || (focusedIndex === -1 && index === 0) ? 0 : -1}
                     onFocus={() => handleCardFocus(index)}
-                    onBlur={() => {
-                      if (!isControlled) setInternalFocusedIndex(-1);
-                      setTimeout(() => {
-                        if (!cardRefs.current.some(ref => ref === document.activeElement)) {
-                          setHasAnyFocus(false);
-                        }
-                      }, 50);
-                    }}
+                    onBlur={() => !isControlled && setInternalFocusedIndex(-1)}
                     onClick={() => onItemClick?.(item.id)}
                     isFocused={focusedIndex === index}
                   />
@@ -190,6 +183,7 @@ export const ContentRail = memo(
               ))}
             </div>
           </div>
+
           <style>{`
             .hide-scrollbar::-webkit-scrollbar {
               display: none;
