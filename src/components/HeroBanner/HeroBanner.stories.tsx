@@ -30,7 +30,7 @@ const meta: Meta<typeof HeroBanner> = {
 export default meta;
 type Story = StoryObj<typeof HeroBanner>;
 
-const PLACEHOLDER_LOGO = 'https://via.placeholder.com/120x48/ffffff/333333?text=Logo';
+const PLACEHOLDER_LOGO = 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="120" height="48" viewBox="0 0 120 48"><rect width="120" height="48" rx="8" fill="%23ffffff" fill-opacity="0.2"/><rect x="16" y="16" width="88" height="16" rx="4" fill="%23ffffff" fill-opacity="0.5"/></svg>';
 
 const sampleSlides: HeroBannerSlide[] = [
   {
@@ -94,7 +94,7 @@ export const MultipleSlides: Story = {
 export const WithLiveTag: Story = {
   args: {
     slides: [
-      { ...sampleSlides[0], isLive: true, logo: CANAL_GOV_LOGO },
+      { ...sampleSlides[0], isLive: true, logo: PLACEHOLDER_LOGO },
       ...sampleSlides.slice(1),
     ],
     autoPlayInterval: 8000,
