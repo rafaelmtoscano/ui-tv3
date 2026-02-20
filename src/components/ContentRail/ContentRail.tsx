@@ -123,23 +123,24 @@ export const ContentRail = memo(
       const railWrapperStyle: React.CSSProperties = {
         position: 'relative',
         width: '100%',
-        minHeight: '312px', // Room for focused card growth
-        padding: '32px 0',
-        margin: '-32px 0',
-        display: 'flex',
-        alignItems: 'center',
+        paddingBlock: '40px',
+        marginBlock: '-40px',
+        overflowX: 'visible',
+        overflowY: 'visible',
       };
 
       const scrollContainerStyle: React.CSSProperties = {
         display: 'flex',
-        gap: '24px',
+        gap: '48px',
         overflowX: 'auto',
         overflowY: 'visible',
         padding: '0 64px', // Rail gutter
         msOverflowStyle: 'none',
         scrollbarWidth: 'none',
         scrollBehavior: 'smooth',
-        width: '100%',
+        width: 'max-content',
+        minWidth: '100%',
+        alignItems: 'center',
       };
 
       return (
@@ -160,17 +161,18 @@ export const ContentRail = memo(
           <div style={railWrapperStyle}>
             <div ref={scrollContainerRef} className="hide-scrollbar" style={scrollContainerStyle}>
               {items.map((item, index) => (
-                <ContentCard
-                  key={item.id}
-                  ref={(el) => (cardRefs.current[index] = el)}
-                  variant={variant}
-                  {...item}
-                  tabIndex={focusedIndex === index || (focusedIndex === -1 && index === 0) ? 0 : -1}
-                  onFocus={() => handleCardFocus(index)}
-                  onBlur={() => !isControlled && setInternalFocusedIndex(-1)}
-                  onClick={() => onItemClick?.(item.id)}
-                  isFocused={focusedIndex === index}
-                />
+                <div key={item.id} style={{ flexShrink: 0 }}>
+                  <ContentCard
+                    ref={(el) => (cardRefs.current[index] = el)}
+                    variant={variant}
+                    {...item}
+                    tabIndex={focusedIndex === index || (focusedIndex === -1 && index === 0) ? 0 : -1}
+                    onFocus={() => handleCardFocus(index)}
+                    onBlur={() => !isControlled && setInternalFocusedIndex(-1)}
+                    onClick={() => onItemClick?.(item.id)}
+                    isFocused={focusedIndex === index}
+                  />
+                </div>
               ))}
             </div>
           </div>

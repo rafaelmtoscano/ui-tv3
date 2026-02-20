@@ -76,7 +76,7 @@ export const ContentCard = memo(
         width: isFocused ? '564px' : '448px',
         height: isFocused ? '312px' : '248px',
         borderRadius: '27.13px',
-        border: isFocused ? `8px solid ${colors.background.primary}` : '8px solid transparent',
+        border: isFocused ? `8px solid ${colors.background.primary}` : 'none',
         boxShadow: isFocused ? '0 16px 48px rgba(0, 0, 0, 0.6)' : 'none',
         padding: '32px',
         display: 'flex',
@@ -113,7 +113,7 @@ export const ContentCard = memo(
         background: 'linear-gradient(0deg, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0) 100%)',
         zIndex: 1,
         pointerEvents: 'none',
-        display: variant === 'image-text' ? 'block' : 'none',
+        display: 'block',
       };
 
       const contentLayerStyle: React.CSSProperties = {
